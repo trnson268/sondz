@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Tài Xỉu</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        .dice {
+            font-size: 50px;
+        }
+        .result {
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Game Tài Xỉu</h1>
+    <p>Chọn cược:</p>
+    <button onclick="play('tai')">Tài (11-18)</button>
+    <button onclick="play('xiu')">Xỉu (3-10)</button>
+    <div class="dice" id="dice">🎲🎲🎲</div>
+    <div class="result" id="result">Kết quả sẽ hiển thị ở đây</div>
+    
+    <script>
+        function rollDice() {
+            return Math.floor(Math.random() * 6) + 1;
+        }
+
+        function play(choice) {
+            let dice1 = rollDice();
+            let dice2 = rollDice();
+            let dice3 = rollDice();
+            let total = dice1 + dice2 + dice3;
+            let resultText = `🎲 ${dice1} + ${dice2} + ${dice3} = ${total}`;
+            document.getElementById("dice").innerHTML = resultText;
+            
+            if ((total >= 11 && choice === 'tai') || (total <= 10 && choice === 'xiu')) {
+                document.getElementById("result").innerText = "Bạn thắng!";
+            } else {
+                document.getElementById("result").innerText = "Bạn thua!";
+            }
+        }
+    </script>
+</body>
+</html>
